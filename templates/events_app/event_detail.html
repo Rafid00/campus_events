@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ event.title }}</h1>
+
+    <div class="card">
+        <p><strong>Category:</strong> {{ event.category.name }}</p>
+        <p><strong>Location:</strong> {{ event.location }}</p>
+        <p><strong>Starts:</strong> {{ event.start_datetime|date:"d M Y, h:i A" }}</p>
+        <p><strong>Ends:</strong> {{ event.end_datetime|date:"d M Y, h:i A" }}</p>
+        <p><strong>Description:</strong></p>
+        <p>{{ event.description }}</p>
+        <hr>
+        <p><strong>Contact Name:</strong> {{ event.contact_name }}</p>
+        <p><strong>Contact Email:</strong> {{ event.contact_email }}</p>
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Approved Events{% endblock %}
+
+{% block content %}
+    <h1>Approved Campus Events</h1>
+
+    {% if events %}
+        {% for event in events %}
+            <div class="card">
+                <h2>
+                    <a href="{% url 'event_detail' event.id %}">{{ event.title }}</a>
+                </h2>
+                <p><strong>Category:</strong> {{ event.category.name }}</p>
+                <p><strong>Location:</strong> {{ event.location }}</p>
+                <p><strong>Starts:</strong> {{ event.start_datetime|date:"d M Y, h:i A" }}</p>
+                <p><strong>Ends:</strong> {{ event.end_datetime|date:"d M Y, h:i A" }}</p>
+                <p>{{ event.description|truncatewords:25 }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No approved events are available yet.</p>
+    {% endif %}
+{% endblock %}

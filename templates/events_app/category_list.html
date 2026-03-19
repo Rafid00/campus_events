@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+    <h1>Event Categories</h1>
+
+    {% if categories %}
+        {% for category in categories %}
+            <div class="card">
+                <h2>
+                    <a href="{% url 'category_events' category.id %}">{{ category.name }}</a>
+                </h2>
+                {% if category.description %}
+                    <p>{{ category.description }}</p>
+                {% else %}
+                    <p class="muted">No description provided.</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No categories have been created yet.</p>
+    {% endif %}
+{% endblock %}

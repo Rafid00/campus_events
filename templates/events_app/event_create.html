@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Submit Event{% endblock %}
+
+{% block content %}
+    <h1>Submit a New Event</h1>
+    <p class="muted">All submitted events must be approved by an admin before appearing publicly.</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div>
+                <label for="{{ field.id_for_label }}"><strong>{{ field.label }}</strong></label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="errorlist">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="btn">Submit Event</button>
+    </form>
+{% endblock %}
